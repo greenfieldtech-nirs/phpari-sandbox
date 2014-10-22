@@ -18,9 +18,16 @@
             /**
              * TODO: add proper checkups in here
              */
-            $this->session->set_userdata(array('loggedin'=>1));
+            $this->session->set_userdata(array('loggedin'=>1, 'email'=>$this->input->post('email')));
 
             redirect('../index.php/welcome', 'refresh', 302);
+        }
+
+        public function logout()
+        {
+            $this->session->set_userdata(array('loggedin'=>0));
+
+            redirect('../', 'refresh', 302);
         }
     }
 

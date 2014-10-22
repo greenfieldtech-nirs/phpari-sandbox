@@ -1,0 +1,52 @@
+%PHP_TAG%
+
+    require_once "c:/xampp/htdocs/phpari-sandbox/www/vendor/autoload.php";
+
+    class BasicStasisApplication
+    {
+
+        private $ariEndpoint;
+        private $stasisClient;
+        private $stasisLoop;
+        private $phpariObject;
+        private $stasisChannelID;
+        private $dtmfSequence = "";
+
+        public $stasisLogger;
+
+        public function __construct($appname = "%APPNAME_TEMPLATE%")
+        {
+            try {
+                if (is_null($appname))
+                    throw new Exception("[" . __FILE__ . ":" . __LINE__ . "] Stasis application name must be defined!", 500);
+
+                $this->phpariObject = new phpari($appname);
+
+                $this->ariEndpoint  = $this->phpariObject->ariEndpoint;
+                $this->stasisClient = $this->phpariObject->stasisClient;
+                $this->stasisLoop   = $this->phpariObject->stasisLoop;
+                $this->stasisLogger = $this->phpariObject->stasisLogger;
+                $this->stasisEvents = $this->phpariObject->stasisEvents;
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                exit(99);
+            }
+        }
+
+        public function setDtmf($digit = NULL)
+        {
+            try {
+
+                $this->dtmfSequence .= $digit;
+
+                return TRUE;
+
+            } catch (Exception $e) {
+                return FALSE;
+            }
+        }
+
+        // process stasis events
+        public function StasisAppEventHandler()
+        {
+

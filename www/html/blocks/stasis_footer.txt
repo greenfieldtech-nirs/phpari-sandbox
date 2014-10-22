@@ -1,0 +1,50 @@
+        }
+
+        public function StasisAppConnectionHandlers()
+        {
+            try {
+                $this->stasisClient->on("request", function ($headers) {
+                    $this->stasisLogger->notice("Request received!");
+                });
+
+                $this->stasisClient->on("handshake", function () {
+                    $this->stasisLogger->notice("Handshake received!");
+                });
+
+                $this->stasisClient->on("message", function ($message) {
+                    $event = json_decode($message->getData());
+                    $this->stasisLogger->notice('Received event: ' . $event->type);
+                    $this->stasisEvents->emit($event->type, array($event));
+                });
+
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                exit(99);
+            }
+        }
+
+        public function execute()
+        {
+            try {
+                $this->stasisClient->open();
+                $this->stasisLoop->run();
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                exit(99);
+            }
+        }
+
+    }
+
+    $basicAriClient = new BasicStasisApplication("hello-world");
+
+    $basicAriClient->stasisLogger->info("Starting Stasis Program... Waiting for handshake...");
+    $basicAriClient->StasisAppEventHandler();
+
+    $basicAriClient->stasisLogger->info("Initializing Handlers... Waiting for handshake...");
+    $basicAriClient->StasisAppConnectionHandlers();
+
+    $basicAriClient->stasisLogger->info("Connecting... Waiting for handshake...");
+    $basicAriClient->execute();
+
+    exit(0);
