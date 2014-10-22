@@ -1,0 +1,17 @@
+{
+    "name":"greenfieldtech-nirs/hat",
+    "keywords":["asterisk","codeigniter","greenfieldtech"],
+    "require":{
+        "php":">=5.3.3",
+        "rediska/rediska": "0.5.8",
+        "educoder/pest": "1.0.0",
+        "devristo/phpws": "dev-master",
+        "greenfieldtech-nirs/phpari": "dev-master",
+        "pda/pheanstalk": "2.1.0",
+        "mandrill/mandrill": "1.0.53",
+        "ellislab/codeigniter": "dev-release/3.0",
+        "giggsey/libphonenumber-for-php": "6.*@dev"
+    },
+    "autoload":{
+    }
+}
