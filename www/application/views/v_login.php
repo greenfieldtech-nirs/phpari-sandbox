@@ -21,6 +21,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="form-wrap">
+                    <img src="<?php echo $this->session->userdata('BASEPATH'); ?>/../logo.png">
                     <h1>Log in with your email account</h1>
                     <form role="form" action="index.php/login/authenticate" method="post" id="login-form" autocomplete="off">
                         <div class="form-group">
