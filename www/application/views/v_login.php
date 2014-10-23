@@ -6,12 +6,12 @@
     <title>ARI/Stasis Sandbox</title>
     <meta name="generator" content="Bootply" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://bootswatch.com/united/bootstrap.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
+    <link href="<?php echo $this->session->userdata('BASEPATH'); ?>/../css/styles.css" rel="stylesheet">
+    <link href="<?php echo $this->session->userdata('BASEPATH'); ?>/../css/login.css" rel="stylesheet">
 </head>
 <body>
 <!-- Header -->
@@ -76,9 +76,9 @@
 
 
 <!-- script references -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/login.js"></script>
-<script src="js/scripts.js"></script>
+<script src="<?php echo $this->session->userdata('BASEPATH'); ?>/../js/jquery.min.js"></script>
+<script src="<?php echo $this->session->userdata('BASEPATH'); ?>/../js/bootstrap.min.js"></script>
+<script src="<?php echo $this->session->userdata('BASEPATH'); ?>/../js/login.js"></script>
+<script src="<?php echo $this->session->userdata('BASEPATH'); ?>/../js/scripts.js"></script>
 </body>
 </html>

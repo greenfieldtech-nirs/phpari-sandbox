@@ -6,6 +6,14 @@
 
         public function index()
         {
+
+            /*
+            echo "<pre>";
+            print_r($_SERVER);
+            echo "</pre>";
+            */
+
+            $this->session->set_userdata('BASEPATH', $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF']);
             $this->load->view('v_login');
         }
 
@@ -20,14 +28,14 @@
              */
             $this->session->set_userdata(array('loggedin'=>1, 'email'=>$this->input->post('email')));
 
-            redirect('../index.php/welcome', 'refresh', 302);
+            redirect( $this->session->userdata('BASEPATH') . '/welcome', 'refresh', 302);
         }
 
         public function logout()
         {
             $this->session->set_userdata(array('loggedin'=>0));
 
-            redirect('../', 'refresh', 302);
+            redirect($this->session->userdata('BASEPATH'), 'refresh', 302);
         }
     }
 

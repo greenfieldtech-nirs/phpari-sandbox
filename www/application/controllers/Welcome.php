@@ -21,6 +21,16 @@ class Welcome extends CI_Controller {
 		$this->load->view('v_main', array('applications'=>$applications, 'events'=>$events));
 	}
 
+    public function applications()
+    {
+        $this->load->model('m_applications', 'applications');
+        $this->load->model('m_events', 'events');
+
+        $applications = $this->applications->get_applications($this->session->userdata('email'));
+        $events = $this->events->get_events($this->session->userdata('email'));
+
+        $this->load->view('v_applications', array('applications'=>$applications, 'events'=>$events));
+    }
 }
 
 /* End of file welcome.php */

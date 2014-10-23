@@ -6,11 +6,11 @@
     <title>ARI/Stasis Sandbox</title>
     <meta name="generator" content="Bootply"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://bootswatch.com/united/bootstrap.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link href="../css/styles.css" rel="stylesheet">
+    <link href="<?php echo $this->session->userdata('BASEPATH'); ?>/../css/styles.css" rel="stylesheet">
 </head>
 <body>
 <!-- Header -->
@@ -50,7 +50,8 @@
             <strong>Stasis Application</strong>
             <hr>
             <ul class="list-unstyled">
-                <li class="nav-header"><h5>Application Manager </h5>
+                <li class="nav-header"><h5><a href="<?php echo $this->session->userdata('BASEPATH'); ?>/welcome/applications">Application Manager</a></h5>
+                    <!--
                     <ul class="list-unstyled " id="userMenu">
                         <li><a href="#">Create Application</a></li>
                         <?php
@@ -63,10 +64,11 @@
                             }
                         ?>
                     </ul>
+                    -->
                 </li>
             </ul>
             <ul class="list-unstyled">
-                <li class="nav-header"><h5>Event Handlers </h5>
+                <li class="nav-header"><h5><a href="<?php echo $this->session->userdata('BASEPATH'); ?>/welcome/index">Event Handlers</a></h5>
                     <ul class="list-unstyled " id="userMenu">
                         <li><a href="#">Add Event Handler</a></li>
                         <?php
@@ -148,16 +150,16 @@
 <!-- /Main -->
 
 <!-- script references -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/scripts.js"></script>
+<script src="<?php echo $this->session->userdata('BASEPATH'); ?>/../js/jquery.min.js"></script>
+<script src="<?php echo $this->session->userdata('BASEPATH'); ?>/../js/bootstrap.min.js"></script>
+<script src="<?php echo $this->session->userdata('BASEPATH'); ?>/../js/scripts.js"></script>
 
 <script>
 
     function loadEventCode(appname, event) {
         var obj = {};
 
-        jQuery.get("../index.php/ajax/get_event_code/" + appname + "/" + event, obj,
+        jQuery.get("<?php echo $this->session->userdata('BASEPATH'); ?>/ajax/get_event_code/" + appname + "/" + event, obj,
             function (data) {
                 console.log(data);
                 jQuery("#eventCode").val(data.sourcecode);
@@ -171,7 +173,7 @@
         var obj = {};
         var selectApp = jQuery("#selectApp").val();
 
-        jQuery.get("../index.php/ajax/generate_app/" + selectApp, obj,
+        jQuery.get("<?php echo $this->session->userdata('BASEPATH'); ?>/ajax/generate_app/" + selectApp, obj,
             function (data) {
                 console.log(data);
                 jQuery("#generatedCode").val(data.sourcecode);
@@ -184,7 +186,7 @@
         var obj = {};
         var selectApp = jQuery("#selectApp").val();
 
-        jQuery.get("../index.php/ajax/exec_app/" + selectApp, obj,
+        jQuery.get("<?php echo $this->session->userdata('BASEPATH'); ?>/ajax/exec_app/" + selectApp, obj,
             function (data) {
                 console.log(data);
                 alert(data.message);
@@ -200,7 +202,7 @@
             appid: jQuery("#appid").val()
         };
 
-        jQuery.post("../index.php/ajax/update_event", obj,
+        jQuery.post("<?php echo $this->session->userdata('BASEPATH'); ?>/ajax/update_event", obj,
             function (data) {
                 console.log(data);
                 alert(data.message);
